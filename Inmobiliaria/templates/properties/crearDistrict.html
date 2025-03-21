@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Distrito{% endblock %}
+
+{% block contenido %} 
+    <div class="card">
+        <div class="card-header">Crear Distrito</div>
+        <div class="card-body">
+            <h4 class="card-title">Datos del Distrito</h4>
+            {%include 'properties/formDistrict.html'%}            
+        </div>
+    </div>
+    
+{% endblock contenido %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Inmuebles{% endblock %}
+
+{% block contenido %}
+
+<style>
+    .table-responsive {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+</style>
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <h4 class="m-0">Lista de Propiedades</h4>
+        <a 
+        class="btn btn-success" href="{% url 'crearInmueble' %}" 
+        role="button" data-toggle="tooltip" data-placement="top" 
+        title="Recuerda llenar los campos previos para crear inmuebles.">
+            Agregar Nuevo Inmueble
+        </a>     
+        
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr > 
+                        <th>ID</th>
+                        <th>Área (m²)</th>
+                        <th>Precio Total</th>
+                        <th>Precio por m²</th>
+                        <th>Estrato</th>
+                        <th>Dirección</th>
+                        <th>Piso</th>
+                        <th>Habitaciones</th>
+                        <th>Edad</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                        <th>Fecha de Publicación</th>
+                        <th>Propietario</th>
+                        <th>Departamento</th>
+                        <th>Ciudad</th>
+                        <th>Localida</th>
+                        <th>Tipo Propiedad</th>
+                        <th>Tipo Transacción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for inmueble in inmuebles %}
+                    <tr>
+                        <td>{{ inmueble.id }}</td>
+                        <td>{{ inmueble.area }}</td>
+                        <td>${{ inmueble.total_price }}</td>
+                        <td>${{ inmueble.price_per_sq_mt }}</td>
+                        <td>{{ inmueble.stratum }}</td>
+                        <td>{{ inmueble.address }}</td>
+                        <td>{{ inmueble.floor }}</td>
+                        <td>{{ inmueble.rooms }}</td>
+                        <td>{{ inmueble.age }}</td>
+                        <td>{{ inmueble.latitude }}</td>
+                        <td>{{ inmueble.longitude }}</td>
+                        <td>{{ inmueble.publication_date }}</td>
+                        <td>{{ inmueble.owner.name }}</td>
+                        <td>{{ inmueble.state.name }}</td>
+                        <td>{{ inmueble.city.name }}</td>
+                        <td>{{ inmueble.district.name }}</td>
+                        <td>{{ inmueble.property_type.type_name }}</td>
+                        <td>{{ inmueble.transaction_type.type_name }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-info" href="{% url 'editarInmueble' inmueble.id %}" role="button">Editar</a>
+                            <a class="btn btn-sm btn-danger" href="{% url 'borrarInmueble' inmueble.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if inmuebles.has_previous %}
+                    <a class="btn btn-primary" href="?page=1">&laquo; Primera</a>
+                    <a class="btn btn-secondary" href="?page={{ inmuebles.previous_page_number }}">Anterior</a>
+                    {% endif %}
+                    <span class="current">
+                        Página {{ inmuebles.number }} de {{ inmuebles.paginator.num_pages }}.
+                    </span>
+                    {% if inmuebles.has_next %}
+                    <a class="btn btn-secondary" href="?page={{ inmuebles.next_page_number }}">Siguiente</a>
+                    <a class="btn btn-primary" href="?page={{ inmuebles.paginator.num_pages }}">Última &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

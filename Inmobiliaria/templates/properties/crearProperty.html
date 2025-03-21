@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Inmueble{% endblock %}
+
+{% block contenido %} 
+    <div class="card">
+        <div class="card-header">Crear Inmueble</div>
+        <div class="card-body">
+            <h4 class="card-title">Datos de la Inmueble</h4>
+            {%include 'properties/formProperty.html'%}            
+        </div>
+    </div>
+    
+{% endblock contenido %}

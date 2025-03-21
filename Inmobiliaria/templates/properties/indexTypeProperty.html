@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Tipos de Propiedad{% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" href="{% url 'crearTipoPropiedad' %}" role="button">Crear tipo de Propiedad</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Lista Tipos de Propiedad</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tipo</th> 
+                        <th scope="col">Acciones</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tipos_propiedades in tipos_propiedades %}
+                    <tr>
+                        <td style="width: 20%">{{ tipos_propiedades.id }}</td>
+                        <td style="width: 50%">{{ tipos_propiedades.type_name }}</td>
+                        <td style="width: 30%">
+                            <a class="btn btn-info" href="{% url 'editarTipoPropiedad' tipos_propiedades.id %}" role="button">Editar</a>
+                            |
+                            <a class="btn btn-danger" href="{% url 'borrarTipoPropiedad' tipos_propiedades.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

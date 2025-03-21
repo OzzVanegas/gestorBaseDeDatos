@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Ciudades{% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" href="{% url 'crearCiudad' %}" role="button">Agregar Ciudad</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Lista de ciudades</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Departamento</th>  <!-- Nueva columna para mostrar el estado -->
+                        <th scope="col">Acciones</th>                                               
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ciudad in ciudades %}
+                    <tr>
+                        <td style="width: 20%">{{ ciudad.id }}</td>
+                        <td style="width: 25%">{{ ciudad.name }}</td>
+                        <td style="width: 30%">{{ ciudad.state.name }}</td>
+                        <td style="width: 20%">
+                            <a class="btn btn-info" href="{% url 'editarCiudad' ciudad.id %}" role="button">Editar</a>
+                            |
+                            <a class="btn btn-danger" href="{% url 'borrarCiudad' ciudad.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

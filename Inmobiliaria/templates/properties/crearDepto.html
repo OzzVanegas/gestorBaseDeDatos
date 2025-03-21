@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Departamento{% endblock %}
+
+{% block contenido %} 
+    <div class="card">
+        <div class="card-header">Crear Departamento</div>
+        <div class="card-body">
+            <h4 class="card-title">Datos del Departamento</h4>
+            {%include 'properties/formDept.html'%}            
+        </div>
+    </div>
+    
+{% endblock contenido %}

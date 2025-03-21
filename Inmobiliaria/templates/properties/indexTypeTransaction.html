@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Tipo Transacción{% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" href="{% url 'crearTransaccion' %}" role="button">Agregar Tipo Transacción</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Lista de Tipo Transacción</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tipo</th>  
+                        <th scope="col">Acciones</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transacciones in transacciones %}
+                    <tr>
+                        <td style="width: 25%">{{ transacciones.id }}</td>
+                        <td style="width: 55%">{{ transacciones.type_name }}</td>
+                        <td style="width: 35%">
+                            <a class="btn btn-info" href="{% url 'editarTransaccion' transacciones.id %}" role="button">Editar</a>
+                            |
+                            <a class="btn btn-danger" href="{% url 'borrarTransaccion' transacciones.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

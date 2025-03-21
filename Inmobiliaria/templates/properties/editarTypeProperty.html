@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Tipo Propiedad{% endblock %}
+
+{% block contenido %} 
+<div class="card">
+    <div class="card-header">Editar Tipo Propiedad</div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del Tipo Propiedad</h4>
+        {%include 'properties/formTypeProperty.html'%}            
+    </div>
+</div>
+{% endblock contenido %}

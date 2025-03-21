@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Departamentos{% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" href="{% url 'crearDepto' %}" role="button">Agregar Departamento</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Lista de Departamentos</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>  
+                        <th scope="col">Acciones</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for departamentos in departamentos %}
+                    <tr>
+                        <td style="width: 15%">{{ departamentos.id }}</td>
+                        <td style="width: 60%">{{ departamentos.name }}</td>
+                        <td style="width: 25%">
+                            <a class="btn btn-info" href="{% url 'editarDepto' departamentos.id %}" role="button">Editar</a>
+                            |
+                            <a class="btn btn-danger" href="{% url 'borrarDepto' departamentos.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if departamentos.has_previous %}
+                    <a class="btn btn-primary" href="?page=1">&laquo; Primera</a>
+                    <a class="btn btn-secondary" href="?page={{ departamentos.previous_page_number }}">Anterior</a>
+                    {% endif %}
+                    <span class="current">
+                        Página {{ departamentos.number }} de {{ departamentos.paginator.num_pages }}.
+                    </span>
+                    {% if departamentos.has_next %}
+                    <a class="btn btn-secondary" href="?page={{ departamentos.next_page_number }}">Siguiente</a>
+                    <a class="btn btn-primary" href="?page={{ departamentos.paginator.num_pages }}">Última &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

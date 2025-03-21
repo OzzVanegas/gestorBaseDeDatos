@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Tipos de propietario{% endblock %}
+
+{% block contenido %} 
+    <div class="card">
+        <div class="card-header">Crear Tipo Propietarios</div>
+        <div class="card-body">
+            <h4 class="card-title">Datos tipo Propietario</h4>
+            {%include 'properties/formTypeOwner.html'%}            
+        </div>
+    </div>
+    
+{% endblock contenido %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Distritos{% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" href="{% url 'crearDistrito' %}" role="button">Agregar Distrito</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Lista de Distritos</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Localidad</th>
+                        <th scope="col">Ciudad</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for distrito in distritos %}
+                    <tr>
+                        <td style="width: 15%">{{ distrito.id }}</td>
+                        <td style="width: 30%">{{ distrito.name }}</td>
+                        <td style="width: 25%">{{ distrito.city.name }}</td>
+                        <td style="width: 30%">
+                            <a class="btn btn-info" href="{% url 'editarDistrito' distrito.id %}" role="button">Editar</a>
+                            |
+                            <a class="btn btn-danger" href="{% url 'borrarDistrito' distrito.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if distritos.has_previous %}
+                    <a class="btn btn-primary" href="?page=1">&laquo; Primera</a>
+                    <a class="btn btn-secondary" href="?page={{ distritos.previous_page_number }}">Anterior</a>
+                    {% endif %}
+                    <span class="current">
+                        Página {{ distritos.number }} de {{ distritos.paginator.num_pages }}.
+                    </span>
+                    {% if distritos.has_next %}
+                    <a class="btn btn-secondary" href="?page={{ distritos.next_page_number }}">Siguiente</a>
+                    <a class="btn btn-primary" href="?page={{ distritos.paginator.num_pages }}">Última &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

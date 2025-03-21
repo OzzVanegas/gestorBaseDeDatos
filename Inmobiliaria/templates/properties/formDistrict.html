@@ -1,0 +1,30 @@
+<form enctype="multipart/form-data" method="post">
+    <!-- Llave que indica que el form viene desde la misma aplicación-->
+    {% csrf_token %}
+
+    {% for field in formulario %}
+        <div class="mb-3">
+            <label for="" class="form-label">{{ field.label }}</label>
+            <br>
+
+            {% if field.field.widget.input_type == 'file' and field.value %}
+                <img src="{{ field.value.url }}" width="100" height="100" alt="Imagen actual">
+            {% endif %}
+
+            {% if field.field.widget.input_type == 'select' %}
+                {{ field }}  
+            {% else %}
+                <input type="{{ field.field.widget.input_type }}" class="form-control" name="{{ field.name }}" 
+                    id="" aria-describedby="helpId" placeholder="{{ field.label }}" 
+                    value="{{ field.value|default:' ' }}" />
+            {% endif %}
+        </div>
+        
+        <div class="col-12 help-text">
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+
+    <input name="" id="" class="btn btn-success" type="submit" value="Enviar Información" />
+    <a name="" id="" class="btn btn-primary" href="{% url 'listar_distritos' %}" role="button">Cancelar</a>
+</form>

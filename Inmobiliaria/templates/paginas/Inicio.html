@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block contenido %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Bienvenido a Inmobiliaria</h1>
+        <p class="lead">Empezar a ingresar Inmuebles</p>
+        <hr class="my-2">
+
+        {% if user.is_authenticated %}
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Empezar</a>
+            </p>
+        {% else %}
+            <!-- Si el usuario no está logueado, redirigir al login -->
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Iniciar sesión</a>
+            </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Tipo Transacción{% endblock %}
+
+{% block contenido %} 
+<div class="card">
+    <div class="card-header">Editar el Tipo Transacción</div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del Tipo Transacción</h4>
+        {%include 'properties/formTypeTransaction.html'%}            
+        
+    </div>
+</div>
+{% endblock contenido %}

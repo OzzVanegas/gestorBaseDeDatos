@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Ciudad{% endblock %}
+
+{% block contenido %} 
+<div class="card">
+    <div class="card-header">Editar Ciudad</div>
+    <div class="card-body">
+        <h4 class="card-title">Datos Ciudad</h4>
+        {%include 'properties/formCity.html'%}            
+    </div>
+</div>
+{% endblock contenido %}
